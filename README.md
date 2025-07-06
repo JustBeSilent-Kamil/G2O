@@ -1,69 +1,68 @@
-# ??? Kalkulator PvP VargothMMO
+#  Kalkulator PvP VargothMMO
 
-Profesjonalny kalkulator obra¿eñ PvP dla gry VargothMMO stworzony przez Kamila.
 
-## ? Funkcje
+##  Funkcje
 
-- **Obliczanie obra¿eñ PvP** z uwzglêdnieniem wszystkich parametrów
-- **Ró¿ne typy obra¿eñ**: Magic, Fire, Edge, Blunt, Point
+
+- **RÃ³Å¼ne typy obraÅ¼eÅ„**: Magic, Fire, Edge, Blunt, Point
 - **Efekty specjalne**: Magictouch, Poison
-- **Statystyki postaci**: Si³a (STR), Zrêcznoœæ (DEX), Inteligencja (INT)
-- **Zaawansowane mechaniki**: Ochrona, penetracja pancerza, redukcja obra¿eñ
+- **Statystyki postaci**: SiÅ‚a (STR), ZrÄ™cznoÅ›Ä‡ (DEX), Inteligencja (INT)
+- **Zaawansowane mechaniki**: Ochrona, penetracja pancerza, redukcja obraÅ¼eÅ„
 - **Trafienia krytyczne** z bonusem 50%
-- **Zapis wyników** do pliku tekstowego
-- **Lista zapisanych wyników** z mo¿liwoœci¹ eksportu
+- **Zapis wynikÃ³w** do pliku tekstowego
+- **Lista zapisanych wynikÃ³w** z moÅ¼liwoÅ›ciÄ… eksportu
 
-## ?? Multimedia
+## Multimedia
 
 - **Muzyka w tle** z kontrolami odtwarzania
 - **Wizualizator audio** z animowanymi paskami
-- **Efekty wizualne**: P³on¹ce ramki i cz¹steczki ognia
-- **Responsive design** z piêknym interfejsem
+- **Efekty wizualne**: PÅ‚onÄ…ce ramki i czÄ…steczki ognia
+- **Responsive design** z piÄ™knym interfejsem
 
-## ?? Jak u¿ywaæ
+##  Jak uÅ¼ywaÄ‡
 
-1. Otwórz plik `kalkulator.html` w przegl¹darce
-2. WprowadŸ dane swojej broni i statystyki
-3. Wybierz typ obra¿eñ i efekty
-4. Kliknij "Oblicz Obra¿enia"
-5. Zapisz wyniki do pliku jeœli chcesz
+1. OtwÃ³rz plik `kalkulator.html` w przeglÄ…darce
+2. WprowadÅº dane swojej broni i statystyki
+3. Wybierz typ obraÅ¼eÅ„ i efekty
+4. Kliknij "Oblicz ObraÅ¼enia"
+5. Zapisz wyniki do pliku jeÅ›li chcesz
 
-## ?? Parametry
+##  Parametry
 
 ### Podstawowe
-- **Obra¿enia Broni** - bazowe obra¿enia twojej broni
-- **Typ Obra¿eñ** - Magic/Fire/Edge/Blunt/Point
-- **Efekt na Przeciwniku** - Magictouch/Poison (redukuje ochronê o 20%)
+- **ObraÅ¼enia Broni** - bazowe obraÅ¼enia twojej broni
+- **Typ ObraÅ¼eÅ„** - Magic/Fire/Edge/Blunt/Point
+- **Efekt na Przeciwniku** - Magictouch/Poison (redukuje ochronÄ™ o 20%) w wypadku Magic/Edge
 
 ### Obrona
-- **Ochrona Przeciwnika** - wartoœæ ochrony celu
-- **Redukcja Obra¿eñ** - procentowa redukcja obra¿eñ
+- **Ochrona Przeciwnika** - wartoÅ›Ä‡ ochrony celu
+- **Redukcja ObraÅ¼eÅ„** - procentowa redukcja obraÅ¼eÅ„
 
 ### Statystyki
-- **Si³a (STR)** - wp³ywa na obra¿enia (×0.3)
-- **Zrêcznoœæ (DEX)** - wp³ywa na obra¿enia (×0.3)
-- **Inteligencja (INT)** - wp³ywa na obra¿enia (×0.3)
+- **SiÅ‚a (STR)** - wpÅ‚ywa na obraÅ¼enia (Ã—0.3)
+- **ZrÄ™cznoÅ›Ä‡ (DEX)** - wpÅ‚ywa na obraÅ¼enia (Ã—0.3)
+- **Inteligencja (INT)** - wpÅ‚ywa na obraÅ¼enia (Ã—0.3)
 
 ### Bonusy
-- **Bonus na ludzi** - dodatkowe obra¿enia przeciwko ludziom
-- **Krytyczny Cios** - zwiêksza obra¿enia o 50%
+- **Bonus na ludzi** - dodatkowe obraÅ¼enia przeciwko ludziom
+- **Krytyczny Cios** - zwiÄ™ksza obraÅ¼enia o 50%
 
-## ?? Pliki projektu
+##  Pliki projektu
 
-- `kalkulator.html` - g³ówny plik aplikacji
-- `logo.png` - t³o aplikacji
+- `kalkulator.html` - gÅ‚Ã³wny plik aplikacji
+- `logo.png` - tÅ‚o aplikacji
 - `muzyka.mp3` - muzyka w tle
-- `fire.mp3` - dŸwiêki ognia
+- `fire.mp3` - dÅºwiÄ™ki ognia
 - `README.md` - ten plik
 
 ## ?? VargothMMO
 
-Kalkulator zosta³ stworzony specjalnie dla serwera VargothMMO, uwzglêdniaj¹c wszystkie mechaniki PvP tej gry.
+Kalkulator zostaÅ‚ stworzony specjalnie dla serwera VargothMMO.
 
-## ????? Autor
+## Autor
 
-**Kamil** - Twórca kalkulatora PvP dla VargothMMO
+**Kamil** - TwÃ³rca kalkulatora PvP dla VargothMMO
 
 ---
 
-*Kalkulator PvP VargothMMO - Precyzyjne obliczenia dla prawdziwych wojowników!*
+
