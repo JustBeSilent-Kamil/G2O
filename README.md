@@ -55,7 +55,7 @@
 - `fire.mp3` - dźwięki ognia
 - `README.md` - ten plik
 
-## ?? VargothMMO
+## VargothMMO
 
 Kalkulator został stworzony specjalnie dla serwera VargothMMO.
 
