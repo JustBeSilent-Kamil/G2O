@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kalkulator PvP VargothMM</title>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('logo.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 120px auto;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px 40px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 25px #000;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+
+    .music-controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      box-shadow: 0 0 15px #000;
+      text-align: center;
+    }
+
+    .music-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .icon-btn {
+      width: 48px;
+      height: 48px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .volume-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .volume-container input[type=range] {
+      width: 100px;
+    }
+
+    .audio-visualizer {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      height: 20px;
+      gap: 3px;
+    }
+
+    .bar {
+      width: 4px;
+      height: 100%;
+      background: #00ffcc;
+      animation: bounce 1s infinite ease-in-out;
+    }
+
+    .bar:nth-child(1) { animation-delay: 0s; }
+    .bar:nth-child(2) { animation-delay: 0.1s; }
+    .bar:nth-child(3) { animation-delay: 0.2s; }
+    .bar:nth-child(4) { animation-delay: 0.3s; }
+    .bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+
+    .signature {
+      position: fixed;
+      right: 20px;
+      bottom: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 20px;
+    }
+
+    .form-grid label {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-grid input,
+    .form-grid select {
+      margin-top: 4px;
+      padding: 6px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .form-submit {
+      grid-column: span 2;
+      text-align: center;
+    }
+
+    .form-submit button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #d35400;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-submit button:hover {
+      background-color: #e67e22;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #00ff99;
+      text-align: center;
+    }
+
+
+.fire-left, .fire-right {
+  position: fixed;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255,140,0,0.4), transparent 70%);
+  animation: flicker 2s infinite ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+.fire-left {
+  left: 0;
+}
+.fire-right {
+  right: 0;
+}
+@keyframes flicker {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+
+.particle {
+  position: fixed;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  background: orange;
+  border-radius: 50%;
+  animation: rise 3s infinite ease-in;
+  opacity: 0.6;
+  z-index: 1;
+}
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-300px) scale(0.2); opacity: 0; }
+}
+
+</style>
+</head>
+<body>
+<div class="fire-left"></div>
+<div class="fire-right"></div>
+<div class="particle" style="left: 20px; animation-delay: 0.0s;"></div>
+<div class="particle" style="left: 25px; animation-delay: 0.3s;"></div>
+<div class="particle" style="left: 30px; animation-delay: 0.6s;"></div>
+<div class="particle" style="left: 35px; animation-delay: 0.8999999999999999s;"></div>
+<div class="particle" style="left: 40px; animation-delay: 1.2s;"></div>
+<div class="particle" style="left: 45px; animation-delay: 1.5s;"></div>
+<div class="particle" style="left: 50px; animation-delay: 1.7999999999999998s;"></div>
+<div class="particle" style="left: 55px; animation-delay: 2.1s;"></div>
+<div class="particle" style="left: 60px; animation-delay: 2.4s;"></div>
+<div class="particle" style="left: 65px; animation-delay: 2.6999999999999997s;"></div>
+<div class="music-controls">
+<div class="music-buttons">
+<button class="icon-btn" id="playPauseBtn" onclick="togglePlayPause()">⏵</button>
+<button class="icon-btn" id="muteButton" onclick="toggleMute()">🔘</button>
+</div>
+<div class="volume-container">
+<label><span id="volumeLabel">50%</span></label>
+<input id="volumeSlider" max="100" min="0" onchange="setVolume(this.value)" type="range" value="50"/>
+</div>
+<div class="audio-visualizer">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
+</div>
+<div class="container">
+<h1>Kalkulator Obrażeń PVP</h1>
+<div class="form-grid">
+<label>Obrażenia Broni:
+        <input id="baseDamage" type="number" value="0"/>
+</label>
+<label>Typ Obrażeń:
+        <select id="damageType">
+<option value="magic">MAGIC</option>
+<option value="fire">FIRE</option>
+<option value="edge">EDGE</option>
+<option value="blunt">BLUNT</option>
+<option value="point">POINT</option>
+</select>
+</label>
+<label>Efekt na Przeciwniku:
+        <select id="effect">
+<option selected="" value="none">Brak</option>
+<option value="magictouch">Magictouch</option>
+<option value="poison">Poison</option>
+</select>
+</label>
+<label>Ochrona Przeciwnika:
+        <input id="protection" type="number" value="0"/>
+</label>
+<label style="display:none;">Penetracja Pancerza (%):
+        <input id="armorPen" type="number" value="0"/>
+</label>
+<label>Bonus na ludzi:
+        <input id="bonusDamage" type="number" value="0"/>
+</label>
+<label>Redukcja Obrażeń (%):
+        <input id="damageReduction" type="number" value="0"/>
+</label>
+<label>Siła (STR):
+        <input id="str" type="number" value="0"/>
+</label>
+<label>Zręczność (DEX):
+        <input id="dex" type="number" value="0"/>
+</label>
+<label>Inteligencja (INT):
+        <input id="int" type="number" value="0"/>
+</label>
+<label>Krytyczny Cios:
+        <select id="isCrit">
+<option selected="" value="no">Nie</option>
+<option value="yes">Tak</option>
+</select>
+</label>
+<div class="form-submit">
+<button onclick="calculateDamage()">Oblicz Obrażenia</button>
+<button class="save-btn" onclick="resetForm()" style="margin-left: 10px; background-color: #777;">Resetuj</button>
+<div id="result"></div>
+</div>
+</div>
+<div id="result"></div>
+<div style="margin-top: 30px; text-align: center;">
+<label for="saveName" style="display:block; margin-bottom: 8px;">Nazwa wyniku:</label>
+<input id="saveName" placeholder="np. Walka z Orkiem" style="width: 80%; padding: 8px; border-radius: 6px; font-size: 14px;" type="text"/>
+<button onclick="saveResult()" style="margin-top: 10px; padding: 10px 16px; border-radius: 8px; background-color: #3498db; color: white; border: none; font-weight: bold;">Zapisz wynik do pliku</button>
+</div>
+<div style="margin-top: 40px;">
+<h3 style="text-align:center;">📜 Zapisane Wyniki</h3>
+<div id="resultsList" style="max-height: 200px; overflow-y: scroll; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;"></div>
+<button onclick="exportSelected()" style="margin-top: 15px; padding: 10px 16px; border-radius: 8px; background-color: #27ae60; color: white; border: none; font-weight: bold; display: block; margin-left: auto; margin-right: auto;">Zapisz wybrane wyniki do pliku</button>
+</div>
+</div>
+<audio id="bgMusic" loop="">
+<source src="muzyka.mp3" type="audio/mpeg"/>
+</audio>
+<div class="signature">Kalkulator PvP VargothMMO By Kamil</div>
+<script>
+    const bgMusic = document.getElementById("bgMusic");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      bgMusic.volume = 0.5;
+      document.getElementById("volumeSlider").value = 50;
+      document.getElementById("volumeLabel").innerText = "50%";
+      document.getElementById("muteButton").innerText = bgMusic.muted ? "🔇" : "🔘";
+    });
+
+    function togglePlayPause() {
+      const btn = document.getElementById("playPauseBtn");
+      if (bgMusic.paused) {
+        bgMusic.play();
+        btn.innerText = "⏸";
+      } else {
+        bgMusic.pause();
+        btn.innerText = "⏵";
+      }
+    }
+
+    function toggleMute() {
+      bgMusic.muted = !bgMusic.muted;
+      const muteBtn = document.getElementById("muteButton");
+      muteBtn.innerText = bgMusic.muted ? "🔇" : "🔘";
+    }
+
+    function setVolume(value) {
+      const volume = value / 100;
+      bgMusic.volume = volume;
+      document.getElementById("volumeLabel").innerText = value + "%";
+    }
+  
+    function protectionCalculate(P, k = 100) {
+      return (95 * P) / (P + k);
+    }
+
+    function calculateDamage() {
+      let base = parseFloat(document.getElementById("baseDamage").value);
+      let protection = parseFloat(document.getElementById("protection").value);
+      let armorPen = parseFloat(document.getElementById("armorPen").value);
+      let bonusDamage = parseFloat(document.getElementById("bonusDamage").value);
+      let damageReduction = parseFloat(document.getElementById("damageReduction").value);
+      let str = parseFloat(document.getElementById("str").value);
+      let dex = parseFloat(document.getElementById("dex").value);
+      let int = parseFloat(document.getElementById("int").value);
+      let damageType = document.getElementById("damageType").value;
+      let effect = document.getElementById("effect").value;
+      let isCrit = document.getElementById("isCrit").value === "yes";
+      let blockChance = 0;
+
+      if ((damageType === "magic" || damageType === "fire") && effect === "magictouch") {
+        protection *= 0.8;
+      }
+      if (damageType === "edge" && effect === "poison") {
+        protection *= 0.8;
+      }
+
+      protection *= (1 - armorPen / 100);
+      let protectionPct = protectionCalculate(protection);
+      let dmgAfterProtection = base * (100 - protectionPct) / 100;
+
+      dmgAfterProtection += bonusDamage;
+      dmgAfterProtection += str * 0.3 + dex * 0.3 + int * 0.3;
+
+      if (isCrit) {
+        dmgAfterProtection *= 1.5;
+      }
+
+      let isBlocked = Math.random() * 100 < blockChance;
+      if (isBlocked) {
+        dmgAfterProtection = 0;
+      }
+
+      let finalDamage = Math.ceil(dmgAfterProtection * (100 - damageReduction) / 100);
+
+      let output = isBlocked ? "Atak został zablokowany!" :
+                   "Obrażenia końcowe: <strong>" + finalDamage.toFixed(2) + "</strong>";
+      if (isCrit && !isBlocked) output += " (Trafienie Krytyczne!)";
+
+      document.getElementById("result").innerHTML = output;
+    }
+
+
+function resetForm() {
+  document.getElementById("baseDamage").value = 0;
+  document.getElementById("protection").value = 0;
+  document.getElementById("armorPen").value = 0;
+  document.getElementById("bonusDamage").value = 0;
+  document.getElementById("damageReduction").value = 0;
+  document.getElementById("str").value = 0;
+  document.getElementById("dex").value = 0;
+  document.getElementById("int").value = 0;
+  document.getElementById("damageType").selectedIndex = 0;
+  document.getElementById("effect").selectedIndex = 0;
+  document.getElementById("isCrit").selectedIndex = 0;
+  document.getElementById("result").innerHTML = "";
+}
+
+
+function saveResult() {
+  const name = document.getElementById("saveName").value.trim();
+  const resultText = document.getElementById("result").innerText;
+  if (!name || !resultText) {
+    alert("Podaj nazwę i oblicz obrażenia najpierw.");
+    return;
+  }
+  const content = name + ":\n" + resultText + "\n";
+  const blob = new Blob([content], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = name.replace(/[^a-z0-9]/gi, '_').toLowerCase() + "_wynik.txt";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
+let results = [];
+
+function saveResult() {
+  const name = document.getElementById("saveName").value.trim();
+  const resultText = document.getElementById("result").innerText;
+  if (!name || !resultText) {
+    alert("Podaj nazwę i oblicz obrażenia najpierw.");
+    return;
+  }
+  const content = name + ": " + resultText;
+  let detail = 
+    "Nazwa: " + name +
+    "\nObrażenia Broni: " + document.getElementById("baseDamage").value +
+    "\nSiła: " + document.getElementById("str").value +
+    "\nZręczność: " + document.getElementById("dex").value +
+    "\nInteligencja: " + document.getElementById("int").value +
+    "\nRedukcja Obrażeń: " + document.getElementById("damageReduction").value + "%" +
+    "\nKrytyk: " + document.getElementById("isCrit").value +
+    "\nWynik: " + resultText;
+results.push({ name: name, value: resultText, text: detail });
+  updateResultsList();
+}
+
+function updateResultsList() {
+  const container = document.getElementById("resultsList");
+  container.innerHTML = "";
+  results.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.innerHTML = '<input type="checkbox" id="result_' + index + '" /> ' + item.name + ': ' + item.value;
+    container.appendChild(div);
+  });
+}
+
+function exportSelected() {
+  const selected = results.filter((_, i) => {
+    const checkbox = document.getElementById("result_" + i);
+    return checkbox && checkbox.checked;
+  });
+  if (selected.length === 0) {
+    alert("Zaznacz przynajmniej jeden wynik.");
+    return;
+  }
+  const content = selected.map(r => "==============================\n" + r.text + "\n").join("\n");
+  const blob = new Blob([content], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "wybrane_wyniki.txt";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
+// Save to localStorage on every update
+function updateResultsList() {
+  const container = document.getElementById("resultsList");
+  container.innerHTML = "";
+  results.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.innerHTML = '<input type="checkbox" id="result_' + index + '" /> ' +
+                    item.name + ': ' + item.value +
+                    ' <button onclick="deleteResult(' + index + ')" style="margin-left:10px;color:#e74c3c;background:none;border:none;cursor:pointer;">🗑️</button>';
+    container.appendChild(div);
+  });
+  localStorage.setItem("vargothResults", JSON.stringify(results));
+}
+
+function deleteResult(index) {
+  results.splice(index, 1);
+  updateResultsList();
+}
+
+window.onload = function() {
+  const stored = localStorage.getItem("vargothResults");
+  if (stored) {
+    results = JSON.parse(stored);
+    updateResultsList();
+  }
+};
+</script>
+<audio autoplay="" id="fireSound" loop="">
+<source src="fire.mp3" type="audio/mpeg"/>
+  Twoja przeglądarka nie obsługuje elementu audio.
+</audio>
+</body>
+</html>
