@@ -1,0 +1,34 @@
+# Pliki systemowe Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Pliki systemowe macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Pliki IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Pliki tymczasowe
+*.tmp
+*.temp
+*.log
+
+# Pliki backup
+*.bak
+*.backup
+
+# Node modules (na wypadek gdyby by³y potrzebne w przysz³oœci)
+node_modules/
+
+# Pliki audio (opcjonalnie - mo¿esz usun¹æ te linie jeœli chcesz wersjonowaæ audio)
+# *.mp3
+# *.wav
+# *.ogg
