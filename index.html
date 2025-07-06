@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kalkulator VargothMMO</title>
+<title>Kalkulator PvP VargothMM</title>
 <style>
     body {
       margin: 0;
@@ -221,8 +221,8 @@
 <div class="particle" style="left: 65px; animation-delay: 2.6999999999999997s;"></div>
 <div class="music-controls">
 <div class="music-buttons">
-<button class="icon-btn" id="playPauseBtn" onclick="togglePlayPause()">⏵</button>
-<button class="icon-btn" id="muteButton" onclick="toggleMute()">🔘</button>
+<button class="icon-btn" id="playPauseBtn" onclick="togglePlayPause()">âŹµ</button>
+<button class="icon-btn" id="muteButton" onclick="toggleMute()">đź”�</button>
 </div>
 <div class="volume-container">
 <label><span id="volumeLabel">50%</span></label>
@@ -237,12 +237,12 @@
 </div>
 </div>
 <div class="container">
-<h1>Kalkulator Obrażeń PVP</h1>
+<h1>Kalkulator ObraĹĽeĹ„ PVP</h1>
 <div class="form-grid">
-<label>Obrażenia Broni:
+<label>ObraĹĽenia Broni:
         <input id="baseDamage" type="number" value="0"/>
 </label>
-<label>Typ Obrażeń:
+<label>Typ ObraĹĽeĹ„:
         <select id="damageType">
 <option value="magic">MAGIC</option>
 <option value="fire">FIRE</option>
@@ -267,13 +267,13 @@
 <label>Bonus na ludzi:
         <input id="bonusDamage" type="number" value="0"/>
 </label>
-<label>Redukcja Obrażeń (%):
+<label>Redukcja ObraĹĽeĹ„ (%):
         <input id="damageReduction" type="number" value="0"/>
 </label>
-<label>Siła (STR):
+<label>SiĹ‚a (STR):
         <input id="str" type="number" value="0"/>
 </label>
-<label>Zręczność (DEX):
+<label>ZrÄ™cznoĹ›Ä‡ (DEX):
         <input id="dex" type="number" value="0"/>
 </label>
 <label>Inteligencja (INT):
@@ -286,7 +286,7 @@
 </select>
 </label>
 <div class="form-submit">
-<button onclick="calculateDamage()">Oblicz Obrażenia</button>
+<button onclick="calculateDamage()">Oblicz ObraĹĽenia</button>
 <button class="save-btn" onclick="resetForm()" style="margin-left: 10px; background-color: #777;">Resetuj</button>
 <div id="result"></div>
 </div>
@@ -298,7 +298,7 @@
 <button onclick="saveResult()" style="margin-top: 10px; padding: 10px 16px; border-radius: 8px; background-color: #3498db; color: white; border: none; font-weight: bold;">Zapisz wynik do pliku</button>
 </div>
 <div style="margin-top: 40px;">
-<h3 style="text-align:center;">📜 Zapisane Wyniki</h3>
+<h3 style="text-align:center;">đź“ś Zapisane Wyniki</h3>
 <div id="resultsList" style="max-height: 200px; overflow-y: scroll; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px;"></div>
 <button onclick="exportSelected()" style="margin-top: 15px; padding: 10px 16px; border-radius: 8px; background-color: #27ae60; color: white; border: none; font-weight: bold; display: block; margin-left: auto; margin-right: auto;">Zapisz wybrane wyniki do pliku</button>
 </div>
@@ -314,24 +314,24 @@
       bgMusic.volume = 0.5;
       document.getElementById("volumeSlider").value = 50;
       document.getElementById("volumeLabel").innerText = "50%";
-      document.getElementById("muteButton").innerText = bgMusic.muted ? "🔇" : "🔘";
+      document.getElementById("muteButton").innerText = bgMusic.muted ? "đź”‡" : "đź”�";
     });
 
     function togglePlayPause() {
       const btn = document.getElementById("playPauseBtn");
       if (bgMusic.paused) {
         bgMusic.play();
-        btn.innerText = "⏸";
+        btn.innerText = "âŹ¸";
       } else {
         bgMusic.pause();
-        btn.innerText = "⏵";
+        btn.innerText = "âŹµ";
       }
     }
 
     function toggleMute() {
       bgMusic.muted = !bgMusic.muted;
       const muteBtn = document.getElementById("muteButton");
-      muteBtn.innerText = bgMusic.muted ? "🔇" : "🔘";
+      muteBtn.innerText = bgMusic.muted ? "đź”‡" : "đź”�";
     }
 
     function setVolume(value) {
@@ -381,10 +381,10 @@
         dmgAfterProtection = 0;
       }
 
-      let finalDamage = Math.ceil(dmgAfterProtection * (100 - damageReduction) / 100);
+      let finalDamage = Math.round(dmgAfterProtection * (100 - damageReduction) / 100);
 
-      let output = isBlocked ? "Atak został zablokowany!" :
-                   "Obrażenia końcowe: <strong>" + finalDamage.toFixed(2) + "</strong>";
+      let output = isBlocked ? "Atak zostaĹ‚ zablokowany!" :
+                   "ObraĹĽenia koĹ„cowe: <strong>" + finalDamage + "</strong>";
       if (isCrit && !isBlocked) output += " (Trafienie Krytyczne!)";
 
       document.getElementById("result").innerHTML = output;
@@ -411,7 +411,7 @@ function saveResult() {
   const name = document.getElementById("saveName").value.trim();
   const resultText = document.getElementById("result").innerText;
   if (!name || !resultText) {
-    alert("Podaj nazwę i oblicz obrażenia najpierw.");
+    alert("Podaj nazwÄ™ i oblicz obraĹĽenia najpierw.");
     return;
   }
   const content = name + ":\n" + resultText + "\n";
@@ -431,17 +431,17 @@ function saveResult() {
   const name = document.getElementById("saveName").value.trim();
   const resultText = document.getElementById("result").innerText;
   if (!name || !resultText) {
-    alert("Podaj nazwę i oblicz obrażenia najpierw.");
+    alert("Podaj nazwÄ™ i oblicz obraĹĽenia najpierw.");
     return;
   }
   const content = name + ": " + resultText;
   let detail = 
     "Nazwa: " + name +
-    "\nObrażenia Broni: " + document.getElementById("baseDamage").value +
-    "\nSiła: " + document.getElementById("str").value +
-    "\nZręczność: " + document.getElementById("dex").value +
+    "\nObraĹĽenia Broni: " + document.getElementById("baseDamage").value +
+    "\nSiĹ‚a: " + document.getElementById("str").value +
+    "\nZrÄ™cznoĹ›Ä‡: " + document.getElementById("dex").value +
     "\nInteligencja: " + document.getElementById("int").value +
-    "\nRedukcja Obrażeń: " + document.getElementById("damageReduction").value + "%" +
+    "\nRedukcja ObraĹĽeĹ„: " + document.getElementById("damageReduction").value + "%" +
     "\nKrytyk: " + document.getElementById("isCrit").value +
     "\nWynik: " + resultText;
 results.push({ name: name, value: resultText, text: detail });
@@ -486,7 +486,7 @@ function updateResultsList() {
     const div = document.createElement("div");
     div.innerHTML = '<input type="checkbox" id="result_' + index + '" /> ' +
                     item.name + ': ' + item.value +
-                    ' <button onclick="deleteResult(' + index + ')" style="margin-left:10px;color:#e74c3c;background:none;border:none;cursor:pointer;">🗑️</button>';
+                    ' <button onclick="deleteResult(' + index + ')" style="margin-left:10px;color:#e74c3c;background:none;border:none;cursor:pointer;">đź—‘ď¸Ź</button>';
     container.appendChild(div);
   });
   localStorage.setItem("vargothResults", JSON.stringify(results));
@@ -507,7 +507,7 @@ window.onload = function() {
 </script>
 <audio autoplay="" id="fireSound" loop="">
 <source src="fire.mp3" type="audio/mpeg"/>
-  Twoja przeglądarka nie obsługuje elementu audio.
+  Twoja przeglÄ…darka nie obsĹ‚uguje elementu audio.
 </audio>
 </body>
 </html>
