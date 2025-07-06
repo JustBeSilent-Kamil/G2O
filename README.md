@@ -52,7 +52,6 @@
 - `kalkulator.html` - główny plik aplikacji
 - `logo.png` - tło aplikacji
 - `muzyka.mp3` - muzyka w tle
-- `fire.mp3` - dźwięki ognia
 - `README.md` - ten plik
 
 ## VargothMMO
